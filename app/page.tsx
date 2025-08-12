@@ -38,10 +38,14 @@ export default function Home() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-sky-300 via-blue-200 to-indigo-300 flex flex-col items-center">
-      <h1 className="text-center mt-10 text-3xl font-bold text-white">天気予報</h1>
+    <section className="min-h-screen bg-gradient-to-br from-sky-300 via-blue-200 to-indigo-300 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 flex flex-col items-center">
+      <h1 className="text-center mt-10 text-3xl font-bold text-gray-800 dark:text-white">
+        天気予報
+      </h1>
       <div className="w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mt-5 text-2xl text-white">{weather.city.name}</h2>
+        <h2 className="mt-5 text-2xl text-gray-800 dark:text-white">
+          {weather.city.name}
+        </h2>
         <div className="mt-5">
           <Weather weather={weather} />
         </div>
