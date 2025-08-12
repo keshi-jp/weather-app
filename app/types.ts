@@ -1,4 +1,4 @@
-interface WEATHER {
+interface WeatherType {
   city: {
     name: string;
   };
@@ -22,4 +22,4 @@ interface WEATHER {
   }>;
 }
 
-export type { WEATHER };
+export type { WeatherType };
