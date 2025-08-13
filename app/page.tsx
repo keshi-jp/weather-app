@@ -1,25 +1,36 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchWeather } from "./fetch-weather";
-import { WeatherType } from "./types";
+import { fetchWeather } from "./api/fetch-weather";
+import { WeatherType } from "./types/weatherType";
 import Weather from "./conponents/Weather";
+import CitySelector from "./conponents/CitySelector";
+import { cities } from "./data/cities";
+import { getCityData } from "./api/geo-coordinates";
 
 export default function Home() {
   const [weather, setWeather] = useState<WeatherType | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCity, setSelectedCity] = useState<string>(
+    Object.entries(cities)[1][0]
+  );
 
   useEffect(() => {
     async function load() {
       try {
-        const data = await fetchWeather();
-        setWeather(data);
-        console.log(data);
+        const cityDataArray = await getCityData(selectedCity);
+        const cityData = cityDataArray[0];
+        console.log(cityData);
+        const lat = cityData.lat;
+        const lon = cityData.lon;
+        const weatherData = await fetchWeather(lat, lon);
+        setWeather(weatherData);
+        console.log(weatherData);
       } catch (e) {
         setError("天気情報の取得に失敗しました");
       }
     }
     load();
-  }, []);
+  }, [selectedCity]);
 
   if (error) {
     return (
@@ -44,11 +55,10 @@ export default function Home() {
       </h1>
       <div className="w-full max-w-5xl px-4 sm:px-6 lg:px-8">
         <h2 className="mt-5 text-2xl text-gray-800 dark:text-white">
-          {weather.city.name}
+          {cities[selectedCity]}
         </h2>
-        <div className="mt-5">
-          <Weather weather={weather} />
-        </div>
+        <CitySelector setSelectedCity={setSelectedCity} />
+        <Weather weather={weather} />
       </div>
     </section>
   );

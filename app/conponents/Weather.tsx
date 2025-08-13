@@ -1,5 +1,5 @@
 import getClosestHourIndex from "../getClosestForecastIndex";
-import { WeatherType } from "../types";
+import { WeatherType } from "../types/weatherType";
 
 interface Props {
   weather: WeatherType;
@@ -9,7 +9,7 @@ export default function Weather({ weather }: Props) {
   const startIndex = getClosestHourIndex(weather);
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 overflow-x-auto snap-x snap-mandatory lg:justify-center">
+    <div className="mt-5 flex flex-wrap justify-center gap-4 lg:justify-center lg:flex-nowrap lg:">
       {weather.list.slice(startIndex, 7 + startIndex).map((item, i) => (
         <div
           key={i}
