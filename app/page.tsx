@@ -53,7 +53,7 @@ export default function Home() {
       <h1 className="text-center mt-10 text-3xl font-bold text-gray-800 dark:text-white">
         天気予報
       </h1>
-      <div className="w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-5xl px-4 pb-10 sm:px-6 lg:px-8 lg:pb-0">
         <h2 className="mt-5 text-2xl text-gray-800 dark:text-white">
           {cities[selectedCity]}
         </h2>

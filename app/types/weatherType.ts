@@ -12,7 +12,12 @@ interface WeatherType {
       temp_min: number;
       temp_max: number;
       humidity: number;
+      pressure: number;
     };
+
+    wind: {
+      speed: number;
+    }
 
     weather: Array<{
       main: string;
